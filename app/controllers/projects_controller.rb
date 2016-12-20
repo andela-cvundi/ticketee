@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
 
-  before_action :find_project, only: [:show, :edit, :update, :delete]
+  before_action :find_project, only: [:show, :edit, :update, :destroy]
 
   def index
     @projects = Project.all
@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
       flash[:success] = "Project has been created"
       redirect_to @project
     else
-      flash.now[:alert] = "Project has not been created."
+      flash.now[:danger] = "Project has not been created."
       render "new"
     end
   end
@@ -52,7 +52,7 @@ class ProjectsController < ApplicationController
   def find_project
     @project = Project.find(params[:id])
     rescue ActiveRecord::RecordNotFound
-    flash[:alert] = "The project you are looking for could not be found"
+    flash[:danger] = "The project you are looking for could not be found"
     redirect_to projects_path
   end
 
