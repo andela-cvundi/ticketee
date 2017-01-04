@@ -22,6 +22,25 @@ class TicketsController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
+  def update
+    if @ticket.update(ticket_params)
+      flash[:success] = "Ticket was updated successfully"
+      redirect_to [@project, @ticket]
+    else
+      flash.now[:danger] = "Error updating ticket"
+      render :edit
+    end
+  end
+
+
+  def destroy
+    @ticket.destroy
+    flash[:success] = "Ticket was deleted successfully"
+    redirect_to @project
+  end
 
   private
 
