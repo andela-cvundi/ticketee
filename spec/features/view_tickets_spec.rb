@@ -4,9 +4,10 @@ RSpec.feature "Users can view tickets" do
 
   before do
     sublime = FactoryGirl.create(:project, name: "sublime")
-    FactoryGirl.create(:ticket, project: sublime, name: "first ticket", description: "This is the description for the first ticket")
+    user = FactoryGirl.create(:user)
+    FactoryGirl.create(:ticket, project: sublime, user: user, name: "first ticket", description: "This is the description for the first ticket")
     ie = FactoryGirl.create(:project, name: "ie")
-    FactoryGirl.create(:ticket, project: ie, name: "ie ticket", description: "This is the description for the ie ticket")
+    FactoryGirl.create(:ticket, project: ie, user: user, name: "ie ticket", description: "This is the description for the ie ticket")
 
     visit "/"
   end

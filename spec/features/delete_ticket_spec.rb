@@ -3,7 +3,8 @@ require "rails_helper"
 RSpec.feature "Users can delete tickets" do
 
   let(:project) { FactoryGirl.create(:project) }
-  let(:ticket) { FactoryGirl.create(:ticket, project: project) }
+  let(:user) { FactoryGirl.create(:user) }
+  let(:ticket) { FactoryGirl.create(:ticket, project: project, user: user) }
 
 
   before do
