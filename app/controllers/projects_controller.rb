@@ -6,22 +6,6 @@ class ProjectsController < ApplicationController
     @projects = Project.all
   end
 
-  def new
-    @project = Project.new
-  end
-
-  def create
-    @project = Project.new(project_params)
-
-    if @project.save
-      flash[:success] = "Project has been created"
-      redirect_to @project
-    else
-      flash.now[:danger] = "Project has not been created."
-      render "new"
-    end
-  end
-
   def show
     @tickets = @project.tickets
   end
@@ -39,12 +23,6 @@ class ProjectsController < ApplicationController
       flash.now[:danger] = "Error updating the project"
       render :edit
     end
-  end
-
-  def destroy
-    @project.destroy
-    flash[:success] = "Project was deleted"
-    redirect_to projects_path
   end
 
 
