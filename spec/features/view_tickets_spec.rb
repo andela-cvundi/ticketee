@@ -1,6 +1,7 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.feature "Users can view tickets" do
+
   before do
     sublime = FactoryGirl.create(:project, name: "sublime")
     FactoryGirl.create(:ticket, project: sublime, name: "first ticket", description: "This is the description for the first ticket")
