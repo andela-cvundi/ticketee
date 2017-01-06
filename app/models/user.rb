@@ -6,4 +6,9 @@ class User < ApplicationRecord
 
   has_many :tickets
 
+
+  def to_s
+    "#{email} (#{admin? ? "Admin" : "User"})"
+  end
+
 end
