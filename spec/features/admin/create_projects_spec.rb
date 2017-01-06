@@ -18,8 +18,6 @@ RSpec.feature "Users can create new projects" do
 
     expect(page.current_url).to eq project_url(project)
 
-    title = "Projects - Ticketee"
-    expect(page.title).to eq title
   end
 
   scenario "With invalid attributes" do
