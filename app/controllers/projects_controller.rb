@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    authorize @project, :show?
     @tickets = @project.tickets
   end
 

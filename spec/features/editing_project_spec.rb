@@ -1,9 +1,13 @@
 require 'rails_helper'
 
 RSpec.feature "Users can edit projects" do
+  let(:user) { FactoryGirl.create(:user) }
 
   before do
     project = FactoryGirl.create(:project)
+    login_as(user)
+    assign_role!(user, :viewer, project)
+
     visit project_url(project)
     click_link "Edit Project"
   end
