@@ -12,11 +12,12 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = Project.find(params[:id])
+    authorize @project, :update?
   end
 
 
   def update
+    authorize @project, :update?
     if @project.update(project_params)
       flash[:success] = "Project was updated successfully"
       redirect_to @project

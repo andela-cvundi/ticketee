@@ -6,7 +6,7 @@ RSpec.feature "Users can edit projects" do
   before do
     project = FactoryGirl.create(:project)
     login_as(user)
-    assign_role!(user, :viewer, project)
+    assign_role!(user, :manager, project)
 
     visit project_url(project)
     click_link "Edit Project"
