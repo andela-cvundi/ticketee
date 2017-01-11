@@ -14,4 +14,11 @@ RSpec.feature "Users can view projects" do
     click_link "Sublime Text"
     expect(page.current_url).to eq project_url(project)
   end
+
+  scenario "Unless they do not have permission" do
+    FactoryGirl.create(:project, name: "Hidden")
+    visit "/"
+    expect(page).to_not have_content("Hidden")
+  end
+
 end
