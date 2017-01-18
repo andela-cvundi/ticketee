@@ -30,6 +30,8 @@ class TicketsController < ApplicationController
   end
 
   def update
+    authorize @ticket, :update?
+
     if @ticket.update(ticket_params)
       flash[:success] = "Ticket was updated successfully"
       redirect_to [@project, @ticket]
