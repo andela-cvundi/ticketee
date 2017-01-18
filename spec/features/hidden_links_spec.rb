@@ -27,6 +27,11 @@ RSpec.feature "Users can see the appropriate links"do
       visit project_path(project)
       expect(page).to_not have_link "Edit Project"
     end
+
+    scenario "cannot see the new project link" do
+      visit project_path(project)
+      expect(page).to_not have_link "New Ticket"
+    end
   end
 
 
@@ -48,6 +53,12 @@ RSpec.feature "Users can see the appropriate links"do
       visit project_path(project)
       expect(page).to have_link "Edit Project"
     end
+
+    scenario "can see the new ticket link" do
+      visit project_path(project)
+      expect(page).to have_link "New Ticket"
+    end
+
   end
 
 end
