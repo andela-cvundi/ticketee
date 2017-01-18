@@ -24,4 +24,6 @@ class User < ApplicationRecord
     archived_at.nil? ? super : :archived
   end
 
+
+
 end
