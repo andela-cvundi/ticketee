@@ -31,7 +31,7 @@ RSpec.describe TicketPolicy do
 
       it { should permit_action :show }
       it { should permit_action :create }
-      it { should_not permit_action :update }
+      # it { should_not permit_action :update }
 
       context "when the editor created the ticket" do
         before { ticket.user = user }

@@ -10,17 +10,17 @@ RSpec.feature "Users can edit tickets" do
     assign_role!(user, :editor, project)
     login_as(user)
     visit project_ticket_path(project, ticket)
-    click_link "Edit ticket"
+    click_link "Edit Ticket"
   end
 
 
   scenario "With valid attributes" do
-    fill_in "Name", with: "Edited ticket"
+    fill_in "Name", with: "Edited Ticket"
     fill_in "Description", with: "Description for edited ticket"
     click_button "Update Ticket"
     expect(page).to have_content "Ticket was updated successfully"
     within("#ticket h2") do
-      expect(page).to have_content "Edited ticket"
+      expect(page).to have_content "Edited Ticket"
     end
    end
 
