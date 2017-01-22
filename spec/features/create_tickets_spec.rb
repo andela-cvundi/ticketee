@@ -15,11 +15,18 @@ RSpec.feature "Users can create tickets" do
   scenario "With valid attributes" do
     fill_in "Name", with: "First ticket"
     fill_in "Description", with: "This is the first ticket we are creating today"
+    attach_file "File", "spec/fixtures/speed.txt"
     click_button "Create Ticket"
     expect(page).to have_content "Ticket was created successfully"
     within ("#ticket") do
       expect(page).to have_content "Author: #{user.email}"
     end
+
+    within ("#ticket .attachment") do
+      expect(page).to have_content "speed.txt"
+    end
+
+
   end
 
   scenario "With invalid attributes" do

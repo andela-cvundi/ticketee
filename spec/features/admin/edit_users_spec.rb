@@ -13,7 +13,7 @@ RSpec.feature "Admins can change user details" do
   scenario "normal user" do
     fill_in  "Email", with: "newguy@example.com"
     click_button "Update User"
-    expect(page).to have_content "User was updated successfully"
+    expect(page).to have_content "User has been updated."
     expect(page).to have_content "newguy@example.com"
     expect(page).to_not have_content user.email
   end
@@ -21,7 +21,7 @@ RSpec.feature "Admins can change user details" do
   scenario "toggle admin user" do
     check "Is admin?"
     click_button "Update User"
-    expect(page).to have_content "User was updated successfully"
+    expect(page).to have_content "User has been updated."
     expect(page).to have_content "#{user.email} (Admin)"
   end
 end
