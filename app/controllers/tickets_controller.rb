@@ -5,13 +5,14 @@ class TicketsController < ApplicationController
   def new
     @ticket = @project.tickets.build
     authorize @ticket, :create?
+    3.times { @ticket.attachments.build }
   end
 
   def create
     @ticket = @project.tickets.build(ticket_params)
     @ticket.user = current_user
-    authorize @ticket, :create?
 
+    authorize @ticket, :create?
     if @ticket.save
       flash[:success] = "Ticket was created successfully"
       redirect_to [@project, @ticket]
@@ -62,6 +63,7 @@ class TicketsController < ApplicationController
   end
 
   def ticket_params
-    params.require(:ticket).permit(:name, :description, :attachment, :attachment_cache)
+    params.require(:ticket).permit(:name, :description,
+      attachments_attributes: [:file, :file_cache])
   end
 end
