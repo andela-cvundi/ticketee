@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170125123133) do
+ActiveRecord::Schema.define(version: 20170125144654) do
 
   create_table "attachments", force: :cascade do |t|
     t.string   "file"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20170125123133) do
     t.integer  "ticket_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "state_id"
+    t.index ["state_id"], name: "index_comments_on_state_id"
     t.index ["ticket_id"], name: "index_comments_on_ticket_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -47,6 +49,11 @@ ActiveRecord::Schema.define(version: 20170125123133) do
     t.index ["user_id"], name: "index_roles_on_user_id"
   end
 
+  create_table "states", force: :cascade do |t|
+    t.string "name"
+    t.string "color"
+  end
+
   create_table "tickets", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -54,7 +61,9 @@ ActiveRecord::Schema.define(version: 20170125123133) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "user_id"
+    t.integer  "state_id"
     t.index ["project_id"], name: "index_tickets_on_project_id"
+    t.index ["state_id"], name: "index_tickets_on_state_id"
     t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 
