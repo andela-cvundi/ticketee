@@ -7,15 +7,15 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
-gem 'turbolinks', '~> 5'
+# gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem "bootstrap-sass"
 gem "font-awesome-rails"
 gem 'simple_form'
 gem 'devise'
 gem "pundit"
-# for file uploads
 gem "carrierwave"
+gem "database_cleaner"
 
 
 group :development, :test do
@@ -35,6 +35,7 @@ end
 group :test do
   gem 'capybara'
   gem "factory_girl_rails"
+  gem "selenium-webdriver"
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
