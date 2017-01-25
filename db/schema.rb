@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170125144654) do
+ActiveRecord::Schema.define(version: 20170125195222) do
 
   create_table "attachments", force: :cascade do |t|
     t.string   "file"
@@ -24,9 +24,11 @@ ActiveRecord::Schema.define(version: 20170125144654) do
     t.text     "text"
     t.integer  "user_id"
     t.integer  "ticket_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.integer  "state_id"
+    t.integer  "previous_state_id"
+    t.index ["previous_state_id"], name: "index_comments_on_previous_state_id"
     t.index ["state_id"], name: "index_comments_on_state_id"
     t.index ["ticket_id"], name: "index_comments_on_ticket_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
