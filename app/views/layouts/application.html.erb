@@ -5,6 +5,14 @@
     <title><%= full_title(yield(:title)) %></title>
     <%= csrf_meta_tags %>
 
+    <style>
+      <% State.all.each do |state| %>
+        .state-<%= state.name.parameterize %> {
+          background-color: <%= state.color %>;
+        }
+      <% end %>
+    </style>
+
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
