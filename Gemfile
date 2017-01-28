@@ -17,6 +17,7 @@ gem 'devise'
 gem "pundit"
 gem "carrierwave"
 gem "database_cleaner"
+gem "fog"
 
 
 group :development, :test do
