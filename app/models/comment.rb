@@ -15,6 +15,8 @@ class Comment < ApplicationRecord
 
   validates :text, presence: true
 
+  after_create :author_watches_ticket
+
   def set_ticket_state
     ticket.state = state
     ticket.save
@@ -22,6 +24,12 @@ class Comment < ApplicationRecord
 
   def set_previous_state
     self.previous_state = ticket.state
+  end
+
+  def author_watches_ticket
+    if user.present? && !ticket.watchers.include?(user)
+      ticket.watchers << user
+    end
   end
 
 end
