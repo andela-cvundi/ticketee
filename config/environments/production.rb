@@ -84,10 +84,11 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false\
 
-  # MAil sending
+
+  # Mail sending
   ActionMailer::Base.delivery_method = :smtp
 
-  host = "vick-ticketee.herokuapp.com"
+  host = "https://vick-ticketee.herokuapp.com"
 
   ActionMailer::Base.smtp_settings = {
     port:           ENV['MAILGUN_SMTP_PORT'],
@@ -96,13 +97,11 @@ Rails.application.configure do
     password:       ENV['MAILGUN_SMTP_PASSWORD'],
     domain:         host,
     authentication: :plain,
-    only_path: true,
   }
 
   config.action_mailer.default_url_options = {
     host: host
   }
-
 
 
 end
