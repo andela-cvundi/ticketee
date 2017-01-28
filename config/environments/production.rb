@@ -96,10 +96,13 @@ Rails.application.configure do
     password:       ENV['MAILGUN_SMTP_PASSWORD'],
     domain:         host,
     authentication: :plain,
+    only_path: true,
   }
 
   config.action_mailer.default_url_options = {
     host: host
   }
+
+
 
 end
