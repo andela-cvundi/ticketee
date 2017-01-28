@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170126152815) do
+ActiveRecord::Schema.define(version: 20170128161423) do
 
   create_table "attachments", force: :cascade do |t|
     t.string   "file"
@@ -60,11 +60,20 @@ ActiveRecord::Schema.define(version: 20170126152815) do
     t.string "name"
   end
 
-  create_table "tags_tickets", id: false, force: :cascade do |t|
-    t.integer "tag_id",    null: false
-    t.integer "ticket_id", null: false
+  create_table "tags_tickets", force: :cascade do |t|
+    t.integer "ticket_id"
+    t.integer "tag_id"
     t.index ["tag_id", "ticket_id"], name: "index_tags_tickets_on_tag_id_and_ticket_id"
+    t.index ["tag_id"], name: "index_tags_tickets_on_tag_id"
     t.index ["ticket_id", "tag_id"], name: "index_tags_tickets_on_ticket_id_and_tag_id"
+    t.index ["ticket_id"], name: "index_tags_tickets_on_ticket_id"
+  end
+
+  create_table "ticket_watchers", id: false, force: :cascade do |t|
+    t.integer "ticket_id", null: false
+    t.integer "user_id",   null: false
+    t.index ["ticket_id", "user_id"], name: "index_ticket_watchers_on_ticket_id_and_user_id"
+    t.index ["user_id", "ticket_id"], name: "index_ticket_watchers_on_user_id_and_ticket_id"
   end
 
   create_table "tickets", force: :cascade do |t|

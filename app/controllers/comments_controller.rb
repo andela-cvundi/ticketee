@@ -14,6 +14,7 @@ class CommentsController < ApplicationController
 
     if @comment.save
       flash[:notice] = "Comment has been created."
+      notify_watchers
       redirect_to [@ticket.project, @ticket]
     else
       flash.now[:alert] = "Comment has not been created."
@@ -30,6 +31,12 @@ class CommentsController < ApplicationController
 
   def find_ticket
     @ticket = Ticket.find(params[:ticket_id])
+  end
+
+  def notify_watchers
+    (@comment.ticket.watchers - [@comment.user]).each do |user|
+      CommentNotifierMailer.created(@comment, user).deliver_now
+    end
   end
 
 end
