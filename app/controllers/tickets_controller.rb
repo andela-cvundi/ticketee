@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
   before_action :set_project
-  before_action :set_ticket, only: [:show, :edit, :update, :destroy]
+  before_action :set_ticket, only: [:show, :edit, :update, :destroy, :watch]
 
   def new
     @ticket = @project.tickets.build
@@ -26,6 +26,21 @@ class TicketsController < ApplicationController
   def show
     authorize @ticket, :show?
     @comment = @ticket.comments.build(state_id: @ticket.state_id)
+  end
+
+  def watch
+    authorize @ticket, :show?
+
+    if @ticket.watchers.exists?(current_user)
+      @ticket.watchers.destroy(current_user)
+      flash[:notice] = "You are no longer watching this ticket."
+    else
+      @ticket.watchers << current_user
+      flash[:notice] = "You are now watching this ticket."
+    end
+
+    redirect_to project_ticket_path(@ticket.project, @ticket)
+
   end
 
   def edit
