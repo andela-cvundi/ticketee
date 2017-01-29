@@ -18,6 +18,7 @@ gem "pundit"
 gem "carrierwave"
 gem "database_cleaner"
 gem "fog"
+gem "active_model_serializers"
 
 
 group :development, :test do
